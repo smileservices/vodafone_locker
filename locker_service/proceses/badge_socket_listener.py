@@ -7,8 +7,8 @@ class BadgeSocketListener:
 	GPIO_PIN = 12
 
 	def __init__(self, callback):
-		self.start_listening_badge_read(callback)
+		self.callback = callback
 
-	def start_listening_badge_read(callback):
+	def listen():
 		# todo start process for listening on pin signal
 		pass

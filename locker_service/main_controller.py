@@ -10,8 +10,11 @@ class MainController:
 	def __init__(self, door_controler, rfid_controller):
 		self.door_controler = door_controler
 		self.rfid_controller = rfid_controller
-		#todo initiate door socker listener
 		#todo initiate badge socker listener
+		self.badge_listener = BadgeSocketListener(self.validate_badge)
+		#initiate door socker listener
+		self.door_listener = DoorSocketListener(self.open_door, self.close_door)
+		self.door_listener.listen()
 
 	def validate_badge(badge_id):
 		response = self.send_data('badge_id', badge_id)
@@ -24,12 +27,17 @@ class MainController:
 
 	def open_door():
 		# do something ... log?
+		pass
+
+	def close_door():
+		self.inspect_locker_content()
 
 	def send_data(self, key, data):
 		data = {
 			'api_key': API_KEY,
 			key: data
 		}
+		#todo set authentication header 
 		r = requests.post(REST_API_ENDPOINT, data=data)
 		response = r.json()
 		return response

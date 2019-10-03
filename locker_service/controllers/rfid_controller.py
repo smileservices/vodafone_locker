@@ -7,5 +7,5 @@ class RfidController:
 		scan multiple times and hold the tags in a set
 		return iterable
 		'''
-		# todo trigger open
+		# return {2: [tags, tags], 4: [tags, tags]}
 		pass
